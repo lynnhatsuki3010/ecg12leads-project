@@ -1,0 +1,48 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TensorFlow & model files
+*.dll
+*.so
+*.dylib
+*.pth
+*.h5
+*.pkl
+*.ckpt
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Uploads 
+back-end/uploads/
+
+# ECG numpy data
+ecg_npy/
+raw/

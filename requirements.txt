@@ -1,0 +1,21 @@
+# === Core libraries ===
+numpy
+pandas
+scipy
+matplotlib
+wfdb
+scikit-learn
+tqdm
+
+# === Deep Learning ===
+torch
+torchvision
+torchaudio
+
+# === Data visualization / analysis ===
+seaborn
+openpyxl
+
+# === Optional ===
+jupyter
+notebook

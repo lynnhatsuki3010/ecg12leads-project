@@ -1,0 +1,1 @@
+ # Hàm hỗ trợ (ví dụ: ghi log, vẽ loss curve)
