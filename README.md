@@ -1,4 +1,6 @@
-<br> <h1><strong>install libraries</strong></h1>
+<br> <h1><strong>open location of web app</strong></h1>
+<br> .\web\Dewi-1.0.0
+<br> <h1><strong>install libraries for web app</strong></h1>
 <br> cd back-end 
 <br> npm install express multer cors
 <br> pip install numpy scipy torch
