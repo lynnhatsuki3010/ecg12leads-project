@@ -99,6 +99,13 @@
                   <div id="result-div" class="text-white bg-dark p-3 rounded">
                     <!-- Kết quả detect -->
                   </div>
+
+                  <!-- NÚT CHỌN ẢNH ECG -->
+                  <div id="ecg-toggle-buttons" class="text-center my-3" style="display:none;">
+                    <button class="btn btn-primary mx-2" id="show-filtered"> Filtered ECG</button>
+                    <button class="btn btn-secondary mx-2" id="show-attention"> Attention Map</button>
+                  </div>
+
                 </div>
 
                 <!-- KHUNG ẢNH HIỂN THỊ LEAD -->
@@ -195,18 +202,51 @@
     resultDiv.innerHTML = html;
 
     // ===== HIỂN THỊ ẢNH 12 LEADS TRÊN 1 HÌNH =====
-    if (data.images && data.images.length > 0) {
-      const img = data.images[0];
+    // ===== HIỂN THỊ ẢNH ECG TỪ SERVER (đường dẫn tĩnh) =====
+    if (data.images && data.images.length >= 2) {
+      const filteredImg = `http://localhost:5000${data.images[0]}`;
+      const attentionImg = `http://localhost:5000${data.images[1]}`;
+
+      const toggleBtns = document.getElementById("ecg-toggle-buttons");
+      toggleBtns.style.display = "block"; // hiện nút chọn ảnh
+
+      // hiển thị mặc định ảnh đầu tiên
       mainLeadDiv.innerHTML = `
-        <img src="data:image/png;base64,${img}" 
-            alt="ECG 12 Leads" 
-            class="img-fluid rounded shadow"
-            style="width: auto; max-width: 100%; height: auto; max-height: 100%;"
-            >
+        <div class="ecg-image text-center mb-3">
+          <h5 class="text-light mb-3"> Filtered ECG</h5>
+          <img src="${filteredImg}" alt="Filtered ECG" class="img-fluid rounded shadow" 
+              style="max-width: 100%; height: auto; border: 2px solid #444;">
+        </div>
       `;
+
+      // sự kiện cho nút
+      document.getElementById("show-filtered").onclick = () => {
+        mainLeadDiv.innerHTML = `
+          <div class="ecg-image text-center mb-3">
+            <h5 class="text-light mb-3"> Filtered ECG</h5>
+            <img src="${filteredImg}" alt="Filtered ECG" class="img-fluid rounded shadow" 
+                style="max-width: 100%; height: auto; border: 2px solid #444;">
+          </div>
+        `;
+      };
+
+      document.getElementById("show-attention").onclick = () => {
+        mainLeadDiv.innerHTML = `
+          <div class="ecg-image text-center mb-3">
+            <h5 class="text-light mb-3">⚡ Attention Map</h5>
+            <img src="${attentionImg}" alt="Attention Map" class="img-fluid rounded shadow" 
+                style="max-width: 100%; height: auto; border: 2px solid #444;">
+          </div>
+        `;
+      };
+
     } else {
-      mainLeadDiv.innerHTML = "<p class='text-danger'>Không có ảnh ECG hiển thị.</p>";
+      mainLeadDiv.innerHTML = "<p class='text-danger'>Không có đủ ảnh ECG để hiển thị.</p>";
     }
+
+
+
+
   })
   .catch(error => {
     console.error("Fetch error:", error);

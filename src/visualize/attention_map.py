@@ -78,13 +78,22 @@ def plot_attention_dots(signal, attn_weights=None, sample_idx=None, label_true=N
             ax.axhline(y, color='lightpink', linewidth=0.3, zorder=1)
         for y in np.arange(y_min, y_max, big_box_mV):
             ax.axhline(y, color='red', linewidth=0.8, zorder=1)
+            
+        # --- Chấm attention ---
+        ax.scatter(
+            time[high_attn_idx],
+            lead[high_attn_idx],
+            color='red',       # đỏ pastel
+            alpha=0.8,             # trong suốt nhẹ
+            s=12,
+            edgecolors='none',    
+            zorder=2
+        )
 
         # --- Sóng ECG ---
         ax.plot(time, lead, color='black', linewidth=0.9, zorder=2)
 
-        # --- Chấm attention ---
-        if attn_weights is not None:
-            ax.scatter(time[high_attn_idx], lead[high_attn_idx], color='red', s=12, zorder=3)
+       
 
     axes[-1].set_xlabel("Time (s)")
 
