@@ -43,6 +43,36 @@ Thumbs.db
 # Uploads 
 back-end/uploads/
 
-# ECG numpy data
-ecg_npy/
-raw/
+# ECG data and models
+data/
+models/
+src/models
+
+# Web folder
+web/
+
+# Processing - mitbih and ptbxl files
+src/processing/*mitbih*
+src/processing/*ptbxl*
+
+# Training - mitbih, ecg_bert, and related files
+src/training/*mitbih*
+src/training/ecg_BERT.py
+src/training/hybridBERT.py
+src/training/hybrid_dataset.py
+src/training/model_hybrid.py
+src/training/evaluate_hybrid.py
+src/training/model_inceptiontime.py
+src/training/model_resnet50.py
+src/training/model_resnet50tm.py
+src/training/model_seresnet18.py
+src/training/resnet1dSE.py
+src/training/gnn_cnn/
+src/training/gnn_transformer/
+
+# Notebooks
+12ECG.ipynb
+
+# Documents
+*.docx
+*.pdf

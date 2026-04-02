@@ -34,7 +34,7 @@ def create_metadata_from_wfdb(root_dir: str) -> pd.DataFrame:
                 })
 
     df = pd.DataFrame(records)
-    print(f"✅ Tạo metadata xong: {len(df)} bản ghi")
+    print(f"Tạo metadata xong: {len(df)} bản ghi")
     return df
 
 
@@ -49,7 +49,7 @@ def map_snomed_codes(df: pd.DataFrame, snomed_path: str) -> pd.DataFrame:
         return ",".join([code2name.get(c.strip(), "Unknown") for c in codes.split(",")])
 
     df["diagnosis_names"] = df["diagnosis_codes"].apply(map_codes)
-    print("🧩 Mapping SNOMED lần đầu (có thể còn Unknown)")
+    print("Mapping SNOMED lần đầu (có thể còn Unknown)")
     return df
 
 
@@ -96,7 +96,7 @@ def resolve_unknown_snomed(cond_path: str, save_path: str):
 
     df_unknown["Resolved_Name"] = resolved_names
     df_unknown.to_excel(save_path, index=False)
-    print(f"✅ Đã resolve SNOMED Unknown -> {save_path}")
+    print(f"Đã resolve SNOMED Unknown -> {save_path}")
     return df_unknown
 
 
@@ -148,7 +148,7 @@ def run_preprocessing():
     df = clean_metadata(df)
 
     df.to_excel(save_path, index=False)
-    print(f"💾 Đã lưu metadata sạch: {save_path}")
+    print(f"Đã lưu metadata sạch: {save_path}")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,8 @@
 # training/train_main.py
 import torch
 from training.resnet_attention import ResNet1DAttention
-from training.resnet50_attention import ResNet1D50Attention   # <-- thêm dòng này
+from training.resnet50_attention import ResNet1D50Attention
+from training.resnet50_transformer import ResNet1D50Transformer   
 from training.inception_time1d import InceptionTime1D
 from training.train_utils import train_model, evaluate_model
 
@@ -13,7 +14,7 @@ def run_training(
     y_train=None,
     y_test=None,
     device=None,
-    model_name="resnet"
+    model_name="resnet50_transformer"
 ):
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -22,15 +23,18 @@ def run_training(
     model_name = model_name.lower()
     if model_name == "resnet":
         print("Training ResNet1D + Attention")
-        model = ResNet1DAttention(num_classes=8)
+        model = ResNet1DAttention(num_classes=11)
     elif model_name == "resnet50":
         print("Training ResNet1D-50 + Attention")
-        model = ResNet1D50Attention(num_classes=8)
+        model = ResNet1D50Attention(num_classes=11)
+    elif model_name == "resnet50_transformer":
+        print("Training ResNet1D-50 + Transformer (4 encoder layers)")
+        model = ResNet1D50Transformer(num_classes=11)
     elif model_name == "inception":
         print("Training InceptionTime1D + Attention")
-        model = InceptionTime1D(in_channels=12, num_classes=8)
+        model = InceptionTime1D(in_channels=12, num_classes=11)
     else:
-        raise ValueError(f"❌ Unknown model name: {model_name}")
+        raise ValueError(f"Unknown model name: {model_name}")
 
     # === Huấn luyện ===
     model = train_model(model, train_loader, val_loader, y_train, device=device)

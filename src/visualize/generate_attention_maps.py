@@ -62,7 +62,7 @@ def generate_attention_visualizations(
                 signal=signal,
                 attn_weights=attn_weights,
                 fs=500,
-                paper_speed=50
+                paper_speed=25
             )
 
             # === Lưu ảnh ===

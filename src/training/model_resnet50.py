@@ -38,7 +38,7 @@ class ResNet1D50Attention(nn.Module):
         self.in_channels = 64
 
         # Khởi tạo conv đầu vào
-        self.conv1 = nn.Conv1d(12, 64, kernel_size=7, stride=2, padding=3, bias=False)
+        self.conv1 = nn.Conv1d(12, 64, kernel_size=7, stride=2, padding=3, bias=False) #thay 6->12 nếu lấy tất cả 12 leads
         self.bn1 = nn.BatchNorm1d(64)
         self.relu = nn.ReLU(inplace=True)
         self.maxpool = nn.MaxPool1d(kernel_size=3, stride=2, padding=1)

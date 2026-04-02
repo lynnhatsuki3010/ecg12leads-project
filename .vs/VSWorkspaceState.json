@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\notebooks",
+    "\\src\\processing",
+    "\\src\\training",
+    "\\src\\visualize"
+  ],
+  "SelectedNode": "\\src\\training\\train_improved.py",
+  "PreviewInSolutionExplorer": false
+}
